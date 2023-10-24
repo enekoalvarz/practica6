@@ -77,7 +77,7 @@ public class DataSetMunicipios extends DatasetParaJTable {
 				}
 				
 				/*
-				//Municipios aunk no me pida
+				//Municipios
 				if(!mapaProv.containsKey(provincia)) {
 					mapaProv.put(provincia, provinciaNode);
 				}else {

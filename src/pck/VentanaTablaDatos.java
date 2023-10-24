@@ -112,7 +112,9 @@ public class VentanaTablaDatos extends JFrame {
 			}
 			
 		});
-		
+
+
+		//CYAN EN LOS NOMBRES IGUALES
 		tablaDatos.setDefaultRenderer( String.class, new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -129,7 +131,9 @@ public class VentanaTablaDatos extends JFrame {
 				return c;
 			}
 		} );
-		
+
+
+		//COMENTARIO AL PONER CURSOR SOBRE CELDA ESPECIFICA
 		tablaDatos.addMouseMotionListener( new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
