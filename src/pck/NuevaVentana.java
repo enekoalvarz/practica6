@@ -89,15 +89,39 @@ public class NuevaVentana extends JFrame{
 
 	    DefaultTableModel model = new DefaultTableModel();
 	    tabla.setBackground(Color.WHITE);
-	    model.addColumn("Nombre");	    
+	    model.addColumn("Nombre");
 	    model.addColumn("Habitantes");
 	    model.addColumn("Provincia");
 	    model.addColumn("Autonomía");
 	    model.addColumn("Poblacion");
-	    
-	    
-	    
-	    for (Municipio muni : muniEnProvincia) {
+
+
+
+		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+				if (column == 4 && value instanceof Integer) {
+					int habitantes = (Integer) value;
+					JProgressBar progressBar = new JProgressBar(50000, 5000000);
+					progressBar.setValue(habitantes);
+
+					//cambiar fondo
+					float red = 1 - (float) habitantes / 5000000; // Rango de 0 (verde) a 1 (rojo)
+					float green = (float) habitantes / 5000000; // Rango de 1 (verde) a 0 (rojo)
+					progressBar.setForeground(new Color(red, green, 0));
+
+					return progressBar;
+				}
+				return c;
+			}
+
+
+		});
+
+
+		for (Municipio muni : muniEnProvincia) {
 	        String nombre = muni.getNombre();
 	        int habitantes = muni.getHabitantes();
 	        String provincia = muni.getProvincia();
