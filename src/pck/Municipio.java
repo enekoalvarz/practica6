@@ -99,10 +99,9 @@ public class Municipio implements FilaParaJTable {  // Especializa un comportami
 	}
 
 
-
 	private static final Class<?>[] CLASES_COLS = { Integer.class, String.class, Integer.class, String.class, String.class, Integer.class, Double.class };
 	private static final String[] CABECERAS_COLS = { "Código", "Nombre", "Habitantes", "Provincia", "Autonomía", "Ingresos Medios", "Tasa de Paro" };
-	
+
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		return CLASES_COLS[columnIndex];

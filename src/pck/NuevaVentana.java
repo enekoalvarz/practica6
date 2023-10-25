@@ -14,7 +14,9 @@ import javax.swing.tree.*;
 @SuppressWarnings("serial")
 public class NuevaVentana extends JFrame{
 
-	private boolean municipiosColoreados = false;
+
+	private int poblacionMunicipioSeleccionado = -1;
+	private JTable tabla;
 
 	public NuevaVentana(DataSetMunicipios dataset, VentanaTablaDatos ventanaTablaDatos) {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -33,12 +35,12 @@ public class NuevaVentana extends JFrame{
 		
 		
 		//Tabla, CENTER
-		JTable tabla = new JTable();
+		tabla = new JTable();
 
 		JScrollPane tablaScrollPane = new JScrollPane(tabla);
 		main.add(tablaScrollPane, BorderLayout.CENTER);
 		
-		mostrarTablaCompleta(ventanaTablaDatos, dataset, tabla); //hago que la tabla del medio sea la original del principio
+		//mostrarTablaCompleta(ventanaTablaDatos, dataset, tabla); //hago que la tabla del medio sea la original del principio
 		
 		
 		//Arbol WEST
@@ -54,11 +56,12 @@ public class NuevaVentana extends JFrame{
 					String provSelec = selectedNode.toString();
 					cargarMunicipiosconProvincia(provSelec, dataset, tabla);
 				}
-							
+
+				/*
 				if(selectedNode.toString().equals("Municipios")) {
 					mostrarTablaCompleta(ventanaTablaDatos, dataset, tabla);
 				}
-				
+				*/
 				
 			}
 			
@@ -80,60 +83,64 @@ public class NuevaVentana extends JFrame{
 
 		tabla.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON3) {
-					int clickEnColumna = tabla.columnAtPoint(e.getPoint());
+			public void mouseClicked(MouseEvent e) {
+				//DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+				int clickEnColumna = tabla.columnAtPoint(e.getPoint());
+				if (e.getButton() == MouseEvent.BUTTON3 && clickEnColumna==0 && poblacionMunicipioSeleccionado == -1){
 					int clickEnFila = tabla.rowAtPoint(e.getPoint());
-					if(clickEnColumna == 0 ){
-						municipiosColoreados = !municipiosColoreados;
-						colorearMunicipios(dataset, tabla, clickEnFila);
+					poblacionMunicipioSeleccionado = (int) tabla.getValueAt(clickEnFila,1);
+				}
+			}
+		});
+
+		tabla.setDefaultRenderer( String.class, new DefaultTableCellRenderer(){
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+				c.setBackground(Color.WHITE);
+				if(column == 0) {
+					int poblacionCelda = (int) tabla.getValueAt(row, 1);
+					if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
+						c.setBackground(Color.WHITE);
+					}else if(poblacionCelda > poblacionMunicipioSeleccionado){
+						c.setBackground(Color.RED);
+					}else if(poblacionCelda < poblacionMunicipioSeleccionado){
+						c.setBackground(Color.green);
 					}
 				}
+
+				return c;
 			}
 		});
 	
 	}
 
 
-	private void colorearMunicipios(DataSetMunicipios dataset, JTable tabla, Integer fila) {
-		if (municipiosColoreados) {
-			System.out.println("PRIMER CLICK");
-			DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+	//EL RENDERER PARA EL FONDO DE LAS CASILLAS
 
-			if (fila != -1) {
-				int poblacionMunicipioSeleccionado = (int) model.getValueAt(fila, 1);
-
-				for (int row = 0; row < model.getRowCount(); row++) {
-					int poblacionMunicipio = (int) model.getValueAt(row, 1);
-					Color color = getColorBasedOnPopulation(poblacionMunicipio, poblacionMunicipioSeleccionado);
-					model.setValueAt(getColoredText((String) model.getValueAt(row, 0), color), row, 0);
+/*
+DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			// no funciona -> System.out.println(municipiosColoreados + "," + column +","+poblacionMunicipioSeleccionado);
+			c.setBackground(Color.WHITE);
+			if(column == 0) {
+				int poblacionCelda = (int) tabla.getValueAt(row, 1);
+				if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
+					c.setBackground(Color.WHITE);
+				}else if(poblacionCelda > poblacionMunicipioSeleccionado){
+					c.setBackground(Color.RED);
+				}else if(poblacionCelda < poblacionMunicipioSeleccionado){
+					c.setBackground(Color.green);
 				}
 			}
-		} else {
-			// Restaurar el fondo a su estado original (FUNCIONA EL SYSOUT POR LO TANTO DETECTA EL CLICK DERECHO DOS VECES)
-			//mostrarTablaCompleta(ventanaTablaDatos, dataset, tabla);
-			System.out.println("vuelve al inicio");
+			return c;
 		}
-	}
+	};
 
-
-	private Color getColorBasedOnPopulation(int poblacionMunicipio, int poblacionMunicipioSeleccionado) {
-		if (poblacionMunicipio > poblacionMunicipioSeleccionado) {
-			return Color.RED;
-		} else if (poblacionMunicipio < poblacionMunicipioSeleccionado) {
-			return Color.GREEN;
-		} else {
-			return Color.WHITE; // Sin cambio de color
-		}
-	}
-
-	private String getColoredText(String text, Color color) {
-		return "<html><font color='" + getColorHex(color) + "'>" + text + "</font></html>";
-	}
-
-	private String getColorHex(Color color) {
-		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
-	}
+ */
 
 
 	private void cargarMunicipiosconProvincia(String provinciaSelec, DataSetMunicipios dataset, JTable tabla) {
@@ -201,7 +208,7 @@ public class NuevaVentana extends JFrame{
 	}
 
 	private void mostrarTablaCompleta(VentanaTablaDatos ventanaTablaDatos, DataSetMunicipios dataset, JTable tabla){
-		ventanaTablaDatos.setDatos(dataset, tabla);
+		//ventanaTablaDatos.setDatos(dataset, tabla);
 		tabla.setBackground(Color.white);
 	}
 }

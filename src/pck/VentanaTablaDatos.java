@@ -72,7 +72,7 @@ public class VentanaTablaDatos extends JFrame {
 		
 	}
 	
-	public void setDatos( DataSetMunicipios datosMunis, JTable tablaDatos ) {
+	public void setDatos( DataSetMunicipios datosMunis ) {
 		this.datosMunis = datosMunis;
 		tablaDatos.setModel( datosMunis );
 		
