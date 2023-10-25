@@ -52,13 +52,13 @@ public class Ejercicio06_03 {
 			// TODO Resolver el ejercicio 6.3
 			
 			ventanaDatos = new VentanaTablaDatos( ventana );			
-
+			/*
 			ventanaDatos.setDatos( dataset);
 			ventanaDatos.setVisible( true );
-			/*
+			^*/
 			NuevaVentana v= new NuevaVentana(dataset, ventanaDatos);
 			v.setVisible(true);
-			*/
+
 		} catch (IOException e) {
 			System.err.println( "Error en carga de municipios" );
 		}

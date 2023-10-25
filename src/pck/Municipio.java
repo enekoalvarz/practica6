@@ -95,7 +95,7 @@ public class Municipio implements FilaParaJTable {  // Especializa un comportami
 	@Override
 	public String toString() {
 		return "Municipio [codigo=" + codigo + ", nombre=" + nombre + ", habitantes=" + habitantes + ", provincia="
-				+ provincia + ", autonomia=" + autonomia + ", ingresos=" + ingresos + ", paro=" + paro + "]";
+				+ provincia + ", autonomia=" + autonomia + ", ingresos=" + ingresos + ", paro=" + paro + "]\n";
 	}
 
 

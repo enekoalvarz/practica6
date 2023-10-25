@@ -5,9 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 @SuppressWarnings("serial")
 public class VentanaTablaDatos extends JFrame {
@@ -21,7 +24,7 @@ public class VentanaTablaDatos extends JFrame {
 
 	private String autonomiaSeleccionada = "";
 	
-	public VentanaTablaDatos( JFrame ventOrigen) { //no necesito ventana Origen como tal ya que quiero que sea automatico pero lo dejo por si acaso
+	public VentanaTablaDatos( JFrame ventOrigen) {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize( 800, 600 );
 		setLocationRelativeTo( null );
@@ -48,8 +51,8 @@ public class VentanaTablaDatos extends JFrame {
 			}
 		});
 		*/
-		
-	
+
+
 		bBorrar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -69,10 +72,12 @@ public class VentanaTablaDatos extends JFrame {
 				}
 			}
 		});
+
+
 		
 	}
 	
-	public void setDatos( DataSetMunicipios datosMunis ) {
+	public void setDatos( DataSetMunicipios datosMunis , JTable tablaDatos) {
 		this.datosMunis = datosMunis;
 		tablaDatos.setModel( datosMunis );
 		
@@ -98,12 +103,6 @@ public class VentanaTablaDatos extends JFrame {
 				 //System.out.println( "getTCR " + row + "," + column );
 				 
 				if (column==2) {
-					//System.out.println(value);
-					// Si el dato es un Object o String sería esto
-					// int valorCelda = Integer.parseInt( value.toString() );
-					// pbHabs.setValue( valorCelda );
-					// return pbHabs;
-					// Pero si el dato está asegurado ser un Integer se puede castear:
 					pbHabs.setValue( (Integer)value );
 					return pbHabs;
 				}
