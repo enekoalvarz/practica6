@@ -33,15 +33,11 @@ public class NuevaVentana extends JFrame{
 	private int COL_INGRESOS = 5;
 	private int COL_PARO = 6;
 	private int COL_POBLACION = 7;
-
-
-
-
-
+	
 
 	public NuevaVentana(DataSetMunicipios dataset, VentanaTablaDatos ventanaTablaDatos) {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setSize( 900, 600 );
+		setSize( 1000, 600 );
 		setLocationRelativeTo( null );
 		setVisible(true);
 
@@ -65,7 +61,29 @@ public class NuevaVentana extends JFrame{
 		
 		
 		//Arbol WEST
-		JTree arbol = new JTree(dataset.getModeloTree());
+		DefaultTreeModel modeloTree = dataset.getModeloTree();
+		JTree arbol = new JTree(modeloTree);
+		JProgressBar progressBar = new JProgressBar(0,10);
+		arbol.setCellRenderer(new DefaultTreeCellRenderer(){
+			public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+				Component c = super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+				Object userObject = node.getUserObject();
+
+				if (userObject != null && !node.isLeaf() && !node.isRoot()) {
+					progressBar.setValue(node.getLeafCount());
+					progressBar.setStringPainted(true);
+					progressBar.setPreferredSize(new Dimension(70, progressBar.getPreferredSize().height-3));
+					JPanel panel = new JPanel(new BorderLayout());
+					panel.add(c, BorderLayout.WEST);
+					panel.add(progressBar, BorderLayout.EAST);
+					return panel;
+				}
+				return c;
+				}
+			});
+
 		JScrollPane arbolSrollPane = new JScrollPane(arbol);
 		main.add(arbolSrollPane, BorderLayout.WEST);
 		
@@ -110,7 +128,7 @@ public class NuevaVentana extends JFrame{
 				SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() { //Uso un SwingWorker para que no interrumpa la ejecucion y se haga en segundo plano, sino da error ConcurrentModificationException.
 					@Override
 					protected Void doInBackground() {
-						int codigo = dataset.getListaMunicipios().size()+1;
+						int codigo = dataset.getListaMunicipios().getLast().getCodigo()+1;
 						String nombre= "";
 						int habitantes = 500000;
 						String provincia = (String) tabla.getValueAt(tabla.getSelectedRow(), COL_PROVINCIA);
@@ -175,7 +193,7 @@ public class NuevaVentana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(provSelec == null){
-					System.out.println("Este boton solo se puede usar para la tabla de provincias");
+					JOptionPane.showMessageDialog(null, "Este boton solo se puede usar para la tabla de provincias");
 				}else{
 					ordenar = !ordenar;
 					cargarMunicipiosconProvincia(provSelec, dataset, tabla);
@@ -212,7 +230,6 @@ public class NuevaVentana extends JFrame{
 					if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
 						c.setBackground(Color.WHITE);
 					}else if(poblacionCelda > poblacionMunicipioSeleccionado){
-						System.out.println(poblacionCelda);
 						c.setBackground(Color.RED);
 					}else if(poblacionCelda < poblacionMunicipioSeleccionado){
 						c.setBackground(Color.green);

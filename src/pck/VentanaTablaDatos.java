@@ -113,7 +113,7 @@ public class VentanaTablaDatos extends JFrame {
 		});
 
 
-		//RENDERER TABLA AL HACER CLICK EN "MUNICIPIOS"
+		//RENDERER TABLA AL HACER CLICK EN "MUNICIPIOS" (root del Tree, la he quitado al final)
 		tablaDatos.setDefaultRenderer( String.class, new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
