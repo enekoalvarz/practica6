@@ -37,4 +37,6 @@
 37	Cádiz	158048	Cádiz	Andalucía	22000	15.8
 38	Cuenca	125916	Cuenca	Castilla-La Mancha	22000	16.5
 39	Lugo	128184	Lugo	Galicia	25000	14.2
-40	Logroño	161376	LaRioja	LaRioja	27000	11.5
+40	Logroño	161376	LaRioja	LaRioja	27000	9.5
+41	Sopela	151376	Vizcaya	Euskadi	27000	11.5
+42	Eibar	2	Gipuzkoa	Euskadi	17000	10.5
