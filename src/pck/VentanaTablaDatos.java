@@ -28,7 +28,7 @@ public class VentanaTablaDatos extends JFrame {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize( 800, 600 );
 		setLocationRelativeTo( null );
-		
+
 		tablaDatos = new JTable();
 		add( new JScrollPane( tablaDatos ), BorderLayout.CENTER );
 		
@@ -113,7 +113,7 @@ public class VentanaTablaDatos extends JFrame {
 		});
 
 
-		//CYAN EN LOS NOMBRES IGUALES
+		//RENDERER TABLA AL HACER CLICK EN "MUNICIPIOS"
 		tablaDatos.setDefaultRenderer( String.class, new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

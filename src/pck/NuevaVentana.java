@@ -17,8 +17,11 @@ import javax.swing.tree.*;
 public class NuevaVentana extends JFrame{
 
 	private int elementosBorrados = 1;
-	private int poblacionMunicipioSeleccionado = -1;
-	private JTable tabla;
+	protected int poblacionMunicipioSeleccionado = -1;
+	protected JTable tabla;
+	protected int poblacionCelda;
+
+	private boolean primerClick;
 
 	public NuevaVentana(DataSetMunicipios dataset, VentanaTablaDatos ventanaTablaDatos) {
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -59,10 +62,11 @@ public class NuevaVentana extends JFrame{
 					cargarMunicipiosconProvincia(provSelec, dataset, tabla);
 				}
 
-
+				/*
 				if(selectedNode.toString().equals("Municipios")) {
 					mostrarTablaCompleta(ventanaTablaDatos, dataset, tabla);
 				}
+				 */
 				
 			}
 			
@@ -112,27 +116,36 @@ public class NuevaVentana extends JFrame{
 						dataset.getListaMunicipios().remove(index);
 					}
 				}
-				tabla.repaint();
+
 
 			}
 		});
 
 
+		orden.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 
 		tabla.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//DefaultTableModel model = (DefaultTableModel) tabla.getModel();
 				int clickEnColumna = tabla.columnAtPoint(e.getPoint());
-				if (e.getButton() == MouseEvent.BUTTON3 && clickEnColumna==1 && poblacionMunicipioSeleccionado == -1){
-					int clickEnFila = tabla.rowAtPoint(e.getPoint());
-					poblacionMunicipioSeleccionado = (int) tabla.getValueAt(clickEnFila,2);
-
+				if (e.getButton() == MouseEvent.BUTTON3 && clickEnColumna==1){
+					if(poblacionMunicipioSeleccionado ==-1){
+						int clickEnFila = tabla.rowAtPoint(e.getPoint());
+						poblacionMunicipioSeleccionado = (int) tabla.getValueAt(clickEnFila,2);
+					}else{
+						poblacionMunicipioSeleccionado = -1;
+					}
 				}
 			}
 		});
 
 
+		//RENDERER PARA LA TABLA INICIAL CON TODO MEZCLADO
 		tabla.setDefaultRenderer( String.class, new DefaultTableCellRenderer(){
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -140,7 +153,7 @@ public class NuevaVentana extends JFrame{
 
 				c.setBackground(Color.WHITE);
 				if(column == 1) {
-					int poblacionCelda = (int) tabla.getValueAt(row, 2);
+					poblacionCelda = (int) tabla.getValueAt(row, 2);
 					System.out.println(poblacionCelda);
 					System.out.println(poblacionMunicipioSeleccionado);
 					if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
@@ -158,32 +171,6 @@ public class NuevaVentana extends JFrame{
 		});
 	
 	}
-
-
-	//EL RENDERER PARA EL FONDO DE LAS CASILLAS
-
-/*
-DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-			// no funciona -> System.out.println(municipiosColoreados + "," + column +","+poblacionMunicipioSeleccionado);
-			c.setBackground(Color.WHITE);
-			if(column == 0) {
-				int poblacionCelda = (int) tabla.getValueAt(row, 1);
-				if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
-					c.setBackground(Color.WHITE);
-				}else if(poblacionCelda > poblacionMunicipioSeleccionado){
-					c.setBackground(Color.RED);
-				}else if(poblacionCelda < poblacionMunicipioSeleccionado){
-					c.setBackground(Color.green);
-				}
-			}
-			return c;
-		}
-	};
-
- */
 
 
 	private void cargarMunicipiosconProvincia(String provinciaSelec, DataSetMunicipios dataset, JTable tabla) {
@@ -222,6 +209,7 @@ DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
 	        model2.addRow(new Object[]{codigo,nombre, habitantes, provincia, autonomia, ingresos, paro, habitantes});
 	    }
 
+		//RENDERER DE LA TABLA DE PROVINCIAS
 		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -239,6 +227,22 @@ DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
 
 					return progressBar;
 				}
+
+				if(column == 1) {
+					int poblacionCelda = (int) tabla.getValueAt(row, 2);
+					System.out.println(poblacionCelda);
+					System.out.println(poblacionMunicipioSeleccionado);
+					if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){
+						c.setBackground(Color.WHITE);
+					}else if(poblacionCelda > poblacionMunicipioSeleccionado){
+						System.out.println(poblacionCelda);
+						c.setBackground(Color.RED);
+					}else if(poblacionCelda < poblacionMunicipioSeleccionado){
+						c.setBackground(Color.green);
+					}
+				}
+
+
 				return c;
 			}
 
