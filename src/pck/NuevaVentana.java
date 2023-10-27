@@ -49,7 +49,7 @@ public class NuevaVentana extends JFrame{
 		
 		//Texto NORTH
 		JPanel textoArriba = new JPanel(); //en JPanel para que vaya centrado
-		textoArriba.add(new JLabel("LOS MUNICIPIOS DE ESPAÑA SI"));
+		textoArriba.add(new JLabel("LOS MUNICIPIOS DE ESPAÑA"));
 		main.add(textoArriba, BorderLayout.NORTH);
 		
 		
@@ -66,7 +66,13 @@ public class NuevaVentana extends JFrame{
 		//Arbol WEST
 		DefaultTreeModel modeloTree = dataset.getModeloTree();
 		JTree arbol = new JTree(modeloTree);
-		JProgressBar progressBar = new JProgressBar(0,10);
+		JProgressBar progressBar = new JProgressBar(0,10){
+			protected void paintComponent(java.awt.Graphics g) {
+				super.paintComponent(g);
+				g.setColor( Color.BLACK );
+				g.drawString( getValue()+"", 30, 12 );
+			}
+		};
 		arbol.setCellRenderer(new DefaultTreeCellRenderer(){
 			public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 				Component c = super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
@@ -76,7 +82,8 @@ public class NuevaVentana extends JFrame{
 
 				if (userObject != null && !node.isLeaf() && !node.isRoot()) {
 					progressBar.setValue(node.getLeafCount());
-					progressBar.setStringPainted(true);
+					//progressBar.setStringPainted(true);
+
 					progressBar.setPreferredSize(new Dimension(70, progressBar.getPreferredSize().height-3));
 					JPanel panel = new JPanel(new BorderLayout());
 					panel.add(c, BorderLayout.WEST);
@@ -149,6 +156,7 @@ public class NuevaVentana extends JFrame{
 					protected void done() {
 						if(provSelec == null){
 							//AQUI RECARGAR TABLA GENERAL - NO ME SALE - FALTA
+							JOptionPane.showMessageDialog(null, "Añadido correctamente al final de la tabla!");
 						}else{
 							cargarMunicipiosconProvincia(provSelec, dataset, tabla);
 						}
@@ -163,14 +171,19 @@ public class NuevaVentana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+					int respuesta;
 					@Override
 					protected Void doInBackground() {
+
 						int index = -1;
 						for(Municipio muni : dataset.getListaMunicipios()){
 							index++;
 							if(muni.getCodigo() == (int)tabla.getValueAt(tabla.getSelectedRow(), COL_CODIGO)){
-								dataset.getListaMunicipios().remove(index);
-
+								respuesta = JOptionPane.showConfirmDialog(null, "Seguro de que deseas borrar "+muni.getNombre()+"("+muni.getCodigo()+")?", "Double checking", JOptionPane.YES_NO_OPTION);
+								System.out.println(respuesta);
+								if (respuesta == JOptionPane.YES_OPTION) {
+									dataset.getListaMunicipios().remove(index);
+								}
 							}
 					}
 					return null;
@@ -179,7 +192,10 @@ public class NuevaVentana extends JFrame{
 					@Override
 					protected void done() {
 						if(provSelec == null){
-							//RECARGAR TABLA GENERAL - NO HAY MANERA - FALTA
+							if(respuesta ==0){
+								//como no he conseguido que la tabla se actualize¡, pongo una alerta.
+								JOptionPane.showMessageDialog(null, "Eliminado correctamente!");
+							}
 						}else{
 							cargarMunicipiosconProvincia(provSelec, dataset, tabla);
 						}
@@ -242,7 +258,7 @@ public class NuevaVentana extends JFrame{
 				DefaultCellEditor noEditable = new DefaultCellEditor(new JTextField());
 				noEditable.setClickCountToStart(Integer.MAX_VALUE); // Practicamente imposible editar las celdas. Sé que no es asi pero no encuentro manera para esta tabla.
 
-				if(column==COL_PROVINCIA || column==COL_AUTONOMIA){
+				if(column==COL_CODIGO ||column==COL_PROVINCIA || column==COL_AUTONOMIA){
 					tabla.getColumnModel().getColumn(COL_PROVINCIA).setCellEditor(noEditable);
 					tabla.getColumnModel().getColumn(COL_AUTONOMIA).setCellEditor(noEditable);
 				}
@@ -274,7 +290,7 @@ public class NuevaVentana extends JFrame{
 	    DefaultTableModel model2 = new DefaultTableModel(){
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column != COL_AUTONOMIA && column != COL_PROVINCIA;
+				return column != COL_AUTONOMIA && column != COL_PROVINCIA && column != COL_CODIGO;
 			}
 		};
 
@@ -305,6 +321,10 @@ public class NuevaVentana extends JFrame{
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+				if(column == COL_CODIGO){
+					table.getColumnModel().getColumn(COL_CODIGO).setPreferredWidth(25);
+				}
 
 				if (column == COL_POBLACION) {
 					int habitantes = (Integer) value;
