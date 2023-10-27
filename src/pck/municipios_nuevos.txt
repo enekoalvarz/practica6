@@ -2,7 +2,7 @@
 2	Almería	401775	Almería	Andalucía	22000	14.2
 3	Badalona	443506	Barcelona	Cataluña	27000	10.8
 4	Barcelona	2636193	Barcelona	Cataluña	35000	8.7
-5	Bilbao	544127	Vizcaya	Euskadi	29000	11.9
+5	Cuzcurrita	14127	LaRioja	LaRioja	29000	11.9
 6	Cartagena	316961	Murcia	Murcia	23000	15.3
 7	Córdoba	439515	Córdoba	Andalucía	22000	14.0
 8	Elche	335580	Alicante	Comunidad Valenciana	26000	12.7
@@ -38,5 +38,134 @@
 38	Cuenca	125916	Cuenca	Castilla-La Mancha	22000	16.5
 39	Lugo	128184	Lugo	Galicia	25000	14.2
 40	Logroño	161376	LaRioja	LaRioja	27000	9.5
-41	Sopela	151376	Vizcaya	Euskadi	27000	11.5
-42	Eibar	2	Gipuzkoa	Euskadi	17000	10.5
+41	Sopela	151376	Bizkaia	Euskadi	27000	11.5
+42	Eibar	27353	Gipuzkoa	Euskadi	22000	9.8
+43	Salamanca	144228	Salamanca	Castilla y León	27000	8.7
+44	Marbella	140549	Málaga	Andalucía	29000	11.9
+45	Algeciras	122703	Cádiz	Andalucía	23000	15.3
+46	Talavera de la Reina	140006	Toledo	Castilla-La Mancha	22000	14.0
+47	Huelva	147808	Huelva	Andalucía	26000	12.7
+48	Lérida	139809	Lleida	Cataluña	28000	9.8
+49	Ourense	137046	Ourense	Galicia	24000	13.2
+50	Badalona	133004	Barcelona	Cataluña	26000	11.0
+51	Navarra	134900	Navarra	Navarra	22000	15.5
+52	Castellón de la Plana	170883	Castellón	Comunidad Valenciana	27000	9.2
+53	San Fernando	102328	Cádiz	Andalucía	28000	11.8
+54	Torrejón de Ardoz	134297	Madrid	Madrid	36000	8.0
+55	Roquetas de Mar	117655	Almería	Andalucía	27000	12.4
+56	Guadalajara	129171	Guadalajara	Castilla-La Mancha	25000	10.5
+57	Vélez-Málaga	132432	Málaga	Andalucía	26000	13.8
+58	Pinto	131232	Madrid	Madrid	27000	9.5
+59	San Vicente del Raspeig	130835	Alicante	Comunidad Valenciana	29000	10.2
+60	Torrent	130512	Valencia	Comunidad Valenciana	28000	9.9
+61	Ferrol	127300	LaCoruña	Galicia	25000	11.7
+62	Maracena	127139	Granada	Andalucía	23000	10.6
+63	Cáceres	121855	Cáceres	Extremadura	24000	13.6
+64	Valdemoro	120626	Madrid	Madrid	26000	11.2
+65	Lugo	119564	Lugo	Galicia	28000	10.3
+66	Mataró	119265	Barcelona	Cataluña	26000	8.5
+67	Sanlúcar de Barrameda	118049	Cádiz	Andalucía	26000	9.6
+68	Cerdanyola del Vallès	117066	Barcelona	Cataluña	24000	8.8
+69	Villarreal	115884	Castellón	Comunidad Valenciana	26000	10.1
+70	Cornellà de Llobregat	115256	Barcelona	Cataluña	25000	13.1
+71	Manresa	113150	Barcelona	Cataluña	23000	16.2
+72	Rivas-Vaciamadrid	110126	Madrid	Madrid	28000	9.0
+73	Algemesí	109242	Valencia	Comunidad Valenciana	25000	12.9
+74	Tenerife	102398	Tenerife	Canarias	26000	13.3
+75	Lebrija	101973	Sevilla	Andalucía	24000	14.7
+76	Ronda	101217	Málaga	Andalucía	22000	15.8
+77	Durango	100339	Bizkaia	Euskadi	22000	16.5
+78	Ceuta	85084	Ceuta	Ceuta	27000	11.5
+79	Elda	80937	Alicante	Comunidad Valenciana	25000	12.5
+80	Ribeira	79451	LaCoruña	Galicia	26000	10.8
+81	Vila-real	51740	Castellón	Comunidad Valenciana	27000	11.5
+82	Sagunto	66690	Valencia	Comunidad Valenciana	29000	10.8
+83	San Sebastián de los Reyes	87213	Madrid	Madrid	28000	12.5
+84	El Puerto de Santa María	89027	Cádiz	Andalucía	24000	9.8
+85	Mijas	85395	Málaga	Andalucía	26000	13.2
+86	Fuengirola	80040	Málaga	Andalucía	26000	11.0
+87	Viladecans	66829	Barcelona	Cataluña	22000	15.5
+88	Calella	66810	Barcelona	Cataluña	23000	14.0
+89	Manacor	62542	Baleares	Baleares	27000	8.7
+90	San Cristóbal de La Laguna	63260	Tenerife	Canarias	28000	11.9
+91	Torrent	58894	Valencia	Comunidad Valenciana	24000	15.3
+92	Villena	60160	Alicante	Comunidad Valenciana	26000	14.0
+93	Ponferrada	68752	León	Castilla y León	22000	12.7
+94	Torrevieja	77754	Alicante	Comunidad Valenciana	28000	9.8
+95	Elda	77757	Alicante	Comunidad Valenciana	25000	13.2
+96	Mollet del Vallès	52293	Barcelona	Cataluña	25000	11.0
+97	Alhaurín de la Torre	38909	Málaga	Andalucía	23000	15.5
+98	Ermua	16922	Bizkaia	Euskadi	24000	9.2
+99	Vilagarcía de Arousa	37984	Pontevedra	Galicia	26000	11.8
+100	Alcudia	20261	Baleares	Baleares	26000	8.0
+101	Cambrils	34589	Tarragona	Cataluña	28000	12.4
+102	Mairena del Aljarafe	44449	Sevilla	Andalucía	24000	10.5
+103	Bétera	19140	Valencia	Comunidad Valenciana	28000	13.8
+104	Getxo	81586	Bizkaia	Euskadi	26000	9.5
+105	Azuqueca de Henares	35068	Guadalajara	Castilla-La Mancha	23000	10.2
+106	San Juan de Alicante	26599	Alicante	Comunidad Valenciana	23000	9.9
+107	Villajoyosa	34767	Alicante	Comunidad Valenciana	25000	11.7
+108	Mislata	42796	Valencia	Comunidad Valenciana	25000	10.6
+109	Altea	26754	Alicante	Comunidad Valenciana	26000	13.6
+110	Plasencia	41621	Cáceres	Extremadura	26000	11.2
+111	Requena	21350	Valencia	Comunidad Valenciana	24000	10.3
+112	Gandia	74301	Valencia	Comunidad Valenciana	26000	8.5
+113	Rota	28219	Cádiz	Andalucía	26000	9.6
+114	Laguna de Duero	21863	Valladolid	Castilla y León	24000	8.8
+115	Santa Lucía de Tirajana	68686	Gran Canaria	Canarias	27000	10.1
+116	Villarrobledo	26211	Albacete	Castilla-La Mancha	23000	13.1
+117	Santa Pola	32436	Alicante	Comunidad Valenciana	22000	16.2
+118	Cehegín	14545	Murcia	Murcia	28000	9.0
+119	Alcalá de Guadaíra	77727	Sevilla	Andalucía	25000	12.9
+120	Crevillent	28645	Alicante	Comunidad Valenciana	26000	13.3
+121	Alcoy	59313	Alicante	Comunidad Valenciana	22000	15.8
+122	Villanueva y Geltrú	66925	Barcelona	Cataluña	23000	14.0
+123	Manresa	78961	Barcelona	Cataluña	24000	11.0
+124	Vilafranca del Penedès	39979	Barcelona	Cataluña	25000	9.8
+125	Sitges	28758	Barcelona	Cataluña	26000	13.2
+126	Llucmajor	38224	Baleares	Baleares	27000	11.5
+127	Artà	7506	Baleares	Baleares	28000	10.8
+128	Pollença	16738	Baleares	Baleares	26000	15.5
+129	Felanitx	18141	Baleares	Baleares	25000	13.6
+130	Inca	31102	Baleares	Baleares	24000	10.1
+131	Alaior	9610	Baleares	Baleares	27000	11.0
+132	Mahón	29522	Baleares	Baleares	22000	9.9
+133	Ciutadella de Menorca	29157	Baleares	Baleares	23000	11.7
+134	Ibiza	48795	Baleares	Baleares	22000	10.6
+135	Santa Eulària des Riu	35967	Baleares	Baleares	27000	10.6
+136	Sant Antoni de Portmany	22086	Baleares	Baleares	26000	13.6
+137	Mojácar	7183	Almería	Andalucía	25000	11.7
+138	El Ejido	90134	Almería	Andalucía	24000	10.5
+139	Vera	15650	Almería	Andalucía	27000	11.7
+140	Huércal-Overa	18192	Almería	Andalucía	26000	9.5
+141	Adra	24777	Almería	Andalucía	25000	10.5
+142	Motril	60041	Granada	Andalucía	22000	11.0
+143	Almuñécar	27083	Granada	Andalucía	27000	9.5
+144	Antequera	41887	Málaga	Andalucía	24000	10.3
+145	Ronda	35992	Málaga	Andalucía	28000	12.9
+146	Fuengirola	81279	Málaga	Andalucía	26000	13.3
+147	Marbella	141463	Málaga	Andalucía	26000	14.7
+148	Alhaurín de la Torre	39429	Málaga	Andalucía	22000	15.8
+149	Rincón de la Victoria	46123	Málaga	Andalucía	22000	16.5
+150	Melilla	86362	Melilla	Melilla	28000	9.0
+151	Sanlúcar de Barrameda	66987	Cádiz	Andalucía	26000	11.2
+152	Utrera	51507	Sevilla	Andalucía	22000	13.8
+153	Lebrija	27511	Sevilla	Andalucía	24000	8.7
+154	Estepa	12007	Sevilla	Andalucía	22000	14.0
+155	Osuna	17350	Sevilla	Andalucía	23000	12.5
+156	Los Palacios y Villafranca	38571	Sevilla	Andalucía	26000	11.7
+157	Écija	39814	Sevilla	Andalucía	26000	10.6
+158	Morón de la Frontera	28147	Sevilla	Andalucía	26000	13.6
+159	Mairena del Alcor	24565	Sevilla	Andalucía	23000	10.6
+160	San Juan de Aznalfarache	21482	Sevilla	Andalucía	24000	13.6
+161	Umbrete	13478	Sevilla	Andalucía	26000	11.7
+162	La Rinconada	33943	Sevilla	Andalucía	26000	9.5
+163	Santa Fe	15395	Granada	Andalucía	22000	13.2
+164	Huétor-Tájar	7949	Granada	Andalucía	23000	10.1
+165	Pulianas	6933	Granada	Andalucía	27000	13.1
+166	Churriana de la Vega	14995	Granada	Andalucía	22000	16.2
+167	Atarfe	17113	Granada	Andalucía	28000	9.0
+168	Albolote	18790	Granada	Andalucía	25000	12.9
+169	María	1026	Almería	Andalucía	27000	13.3
+170	Tíjola	3066	Almería	Andalucía	24000	14.7
+171	Bédar	1449	Almería	Andalucía	26000	15.8

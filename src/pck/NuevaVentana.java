@@ -41,6 +41,9 @@ public class NuevaVentana extends JFrame{
 		setLocationRelativeTo( null );
 		setVisible(true);
 
+		//Panel explicatorio
+		JOptionPane.showMessageDialog(null, "Nota: He añadido la tabla inicial aunque no lo pidiera y, aunque algunas funciones si he podido \nimplementarlas en esta tabla, otras como los botones no he podido configurarlos del todo bien. ");
+
 		JPanel main = new JPanel(new BorderLayout());
 		add(main);
 		
@@ -316,6 +319,7 @@ public class NuevaVentana extends JFrame{
 					return progressBar;
 				}
 
+				c.setBackground(Color.white);
 				if(column == COL_NOMBRE) {
 					int poblacionCelda = (int) tabla.getValueAt(row, COL_HABITANTES);
 					if(poblacionMunicipioSeleccionado == -1 || poblacionCelda==poblacionMunicipioSeleccionado){

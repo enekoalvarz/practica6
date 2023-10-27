@@ -93,7 +93,7 @@ public class DataSetMunicipios extends DatasetParaJTable {
 				
 			        
 			} catch (IndexOutOfBoundsException | NumberFormatException e) {
-				System.err.println( "Error en lectura de línea " + numLinea );
+				//System.err.println( "Error en lectura de línea " + numLinea );
 				System.out.println(e.getMessage());
 			}
 		}
